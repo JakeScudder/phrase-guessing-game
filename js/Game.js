@@ -2,7 +2,7 @@
  * Project 4 - OOP Game App
  * Game.js */
 
- class Game {
+class Game {
      constructor() {
          this.missed = 0
          this.phrases = this.createPhrases();
@@ -33,6 +33,10 @@
     getRandomPhrase() {
         let randomNum = Math.floor(Math.random() * 5);
         return this.phrases[randomNum];
+    }
+
+    startGame() {
+        
     }
 
 
