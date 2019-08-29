@@ -17,7 +17,7 @@ class Game {
         let phrases = [
         {phrase:"Home is where the heart is"},
         {phrase:"Catch a tiger by the toe"},
-        {phrase:"Run Forest run"},
+        {phrase:"Run Forrest run"},
         {phrase:"With great power comes great responsibility"},
         {phrase:"To infinity and beyond"}
         ];
@@ -38,14 +38,14 @@ class Game {
     /**
     * Begins game by selecting a random phrase and displaying it to user
     */
-    // startGame() {
-    //     let overlay = document.getElementByID('overlay');
-    //     overlay.style.display = 'none';
-    //     let randomPhrase = getRandomPhrase();
-    //     this.activePhrase = randomPhrase;
-    //     addPhraseToDisplay(randomPhrase);
-    //
-    // }
+    startGame() {
+        let overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        let randomPhrase = getRandomPhrase();
+        this.activePhrase = randomPhrase;
+        addPhraseToDisplay(randomPhrase);
+
+    }
 
 
 
