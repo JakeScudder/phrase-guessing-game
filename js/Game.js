@@ -35,9 +35,17 @@ class Game {
         return this.phrases[randomNum];
     }
 
-    startGame() {
-        
-    }
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    // startGame() {
+    //     let overlay = document.getElementByID('overlay');
+    //     overlay.style.display = 'none';
+    //     let randomPhrase = getRandomPhrase();
+    //     this.activePhrase = randomPhrase;
+    //     addPhraseToDisplay(randomPhrase);
+    //
+    // }
 
 
 

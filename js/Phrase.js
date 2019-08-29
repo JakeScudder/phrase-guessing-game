@@ -19,7 +19,7 @@ class Phrase {
         arr.forEach(character => {
             let test = /[a-z]/.test(character);
             if (test) {
-                html += `<li class="hide letter ${character}">${character}u</li>`
+                html += `<li class="hide letter ${character}">${character}</li>`
             } else {
                 html += '<li class="space"> </li>'
             }
