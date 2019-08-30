@@ -41,9 +41,14 @@ class Game {
     startGame() {
         let overlay = document.getElementById('overlay');
         overlay.style.display = 'none';
-        let randomPhrase = getRandomPhrase();
-        this.activePhrase = randomPhrase;
-        addPhraseToDisplay(randomPhrase);
+        let randomPhrase = this.getRandomPhrase()
+        this.activePhrase = randomPhrase.phrase;
+        console.log(randomPhrase.phrase);
+        phrase.addPhraseToDisplay(randomPhrase);
+
+        // let randomPhrase = getRandomPhrase();
+        // this.activePhrase = randomPhrase;
+        // addPhraseToDisplay(randomPhrase);
 
     }
 
