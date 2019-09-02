@@ -37,19 +37,34 @@ class Game {
 
     /**
     * Begins game by selecting a random phrase and displaying it to user
+      Initially the overlay is hidden, a random phrase is chosen.
+      this.activePhrase is assigned to the new Phrase object and a randomPhrase is passed in as an argument
+      addPhraseToDisplay is called on the activePhrase object
     */
     startGame() {
         let overlay = document.getElementById('overlay');
         overlay.style.display = 'none';
         let randomPhrase = this.getRandomPhrase()
-        this.activePhrase = randomPhrase.phrase;
-        console.log(randomPhrase.phrase);
-        phrase.addPhraseToDisplay(randomPhrase);
+        this.activePhrase = new Phrase(randomPhrase.phrase);
+        this.activePhrase.addPhraseToDisplay();
 
-        // let randomPhrase = getRandomPhrase();
-        // this.activePhrase = randomPhrase;
-        // addPhraseToDisplay(randomPhrase);
+    }
 
+    checkForWin() {
+
+    }
+
+    removeLife() {
+
+    }
+
+    gameOver() {
+
+    }
+
+
+    handleInteraction() {
+        this.activePhrase.checkLetter();
     }
 
 
