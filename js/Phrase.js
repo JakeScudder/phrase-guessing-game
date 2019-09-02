@@ -34,7 +34,7 @@ class Phrase {
      */
     checkLetter() {
         //Listen for click
-        document.querySelectorAll('.key').addEventListener('click', function(event){
+        document.querySelector('#qwerty').addEventListener('click', function(event){
             console.log('click');
             let arr = game.activePhrase.phrase.split("");
             //For each letter in the phrase, if that matches the letter that is clicked, return true;
