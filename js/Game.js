@@ -12,7 +12,6 @@ class Game {
     /**
      * Creates phrases for use in game
      * @return {array} An array of phrases that could be used in the game */
-
     createPhrases() {
         let phrases = [
         {phrase:"Home is where the heart is"},
@@ -24,12 +23,10 @@ class Game {
         return phrases;
     };
 
-
     /**
      * Selects random phrase from phrases property
      * @return {Object} Phrase object chosen to be used
      */
-
     getRandomPhrase() {
         let randomNum = Math.floor(Math.random() * 5);
         return this.phrases[randomNum];
@@ -72,12 +69,44 @@ class Game {
         }
     }
 
+    /**
+     * Increases the value of the missed property
+     * Removes a life from the scoreboard
+     * Checks if player has remaining lives and ends game if player is out
+     */
     removeLife() {
+        let scoreboard = document.querySelectorAll('img');
+        for (let i = 0; i < scoreboard.length; i++) {
+            if (scoreboard[i].src.includes('images/lostHeart.png')) {
+                continue;
+            }
+            if (scoreboard[i].src.includes('images/liveHeart.png')) {
+                scoreboard[i].src = 'images/lostHeart.png';
+                this.missed += 1;
+                break;
+            }
 
+        }
+        if (this.missed === 5) {
+            this.gameOver(true);
+        }
     }
 
-    gameOver() {
+    /**
+     * Displays game over message
+     * @param {boolean} gameWon - Whether or not the user won the game
+     */
+    gameOver(truthy) {
+        let overlay = document.getElementById('overlay');
+        let h1 = document.getElementById('game-over-message');
+        overlay.style.display = 'show';
 
+        if (truthy) {
+            h1.style.display = 'show';
+            overlay.className = 'lose';
+        } else {
+            overlay.className = 'win';
+        }
     }
 
 
