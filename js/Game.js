@@ -123,13 +123,10 @@ class Game {
         } else if (checkLetter(button.textContent)){
             button.className = 'chosen';
             phrase.showMatchedLetter();
-        } else {
-            if (this.checkForWin()) {
+        } else if (this.checkForWin()) {
                 this.gameOver();
             };
         }
-
-    }
 
 
 
