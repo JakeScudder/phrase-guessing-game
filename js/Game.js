@@ -94,17 +94,19 @@ class Game {
 
     /**
      * Displays game over message
-     * @param {boolean} gameWon - Whether or not the user won the game
+     * @param {boolean} truthy - If gameOver is True, the player lost.
      */
     gameOver(truthy) {
         let overlay = document.getElementById('overlay');
         let h1 = document.getElementById('game-over-message');
-        overlay.style.display = 'show';
-
+        h1.textContent = "Sorry, better luck next time!";
+        overlay.style.display = 'block';
         if (truthy) {
-            h1.style.display = 'show';
+            h1.style.display = 'block';
             overlay.className = 'lose';
         } else {
+            h1.textContent = "Congratulations, you win!";
+            h1.style.display = 'block';
             overlay.className = 'win';
         }
     }
