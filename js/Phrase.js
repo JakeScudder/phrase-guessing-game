@@ -32,42 +32,25 @@ class Phrase {
      * Checks if passed letter is in phrase
      * @param (string) letter - Letter to check
      */
-    checkLetter() {
-        //Listen for click
-        document.querySelector('#qwerty').addEventListener('click', function(event){
-            console.log('click');
-            let arr = game.activePhrase.phrase.split("");
-            //For each letter in the phrase, if that matches the letter that is clicked, return true;
-            arr.forEach(letter => {
-                if (event.target.textContent === letter) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
+    checkLetter(letter) {
+        let phrase = this.phrase
+        if (phrase.includes(letter)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
-
     /**
      * Displays passed letter on screen after a match is found
      * @param (string) letter - Letter to display
      */
-    showMatchedLetter() {
-        if (checkletter()) {
-            //Find letters in the phrase
-            let arr = this.phrase.split("")
-            //Select all List Elements
-            let li = document.querySelectorAll('li')
-            //If the list element matches the class name of the letter then
-            //display that element
-            arr.forEach(letter => {
-                for (let i = 0; i < li.length; i++) {
-                    if (li[i].className = `hide letter ${letter}`) {
-                        li[i].className = `show letter ${letter}`;
-                    }
-                }
-            });
+    showMatchedLetter(letter) {
+        let li = document.querySelectorAll('li')
+        for (let i = 0; i < li.length; i++) {
+            if (li[i].className === `hide letter ${letter}`) {
+                li[i].className = `show letter ${letter}`;
+            } else {
+            }
         }
     }
 }

@@ -7,3 +7,7 @@ document.getElementById('btn__reset').addEventListener('click', function(){
   game = new Game();
   game.startGame();
 });
+
+document.querySelector('#qwerty').addEventListener('click', function(){
+    game.handleInteraction();
+});

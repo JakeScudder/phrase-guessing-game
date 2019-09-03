@@ -47,11 +47,29 @@ class Game {
         let randomPhrase = this.getRandomPhrase()
         this.activePhrase = new Phrase(randomPhrase.phrase);
         this.activePhrase.addPhraseToDisplay();
-
     }
 
+    /**
+     * Checks for winning move
+     * @return {boolean} True if game has been won, false if game wasn't
+    won */
     checkForWin() {
-
+        let li = document.querySelectorAll('#phrase li');
+        let truthyArray = [];
+        li.forEach(letterElement => {
+            if (letterElement.className === `show letter ${letterElement.textContent}`) {
+                truthyArray.push(true);
+            } else if (letterElement.className === "space"){
+                truthyArray.push(true);
+            } else {
+                truthyArray.push(false);
+            }
+        });
+        if (truthyArray.includes(false)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     removeLife() {
