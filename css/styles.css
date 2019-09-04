@@ -43,11 +43,17 @@ h2 {
   margin-top: 100px;
 }
 
+h5 {
+    font-family: 'Hepta Slab', serif;
+}
+
 h1 {
+  font-family: 'Hepta Slab', serif;
   font-size: 30px;
 }
 
 button {
+  font-family: 'Hepta Slab', serif;
   margin: 6px;
   border: 1px solid transparent;
   padding: 1%;
@@ -178,6 +184,7 @@ button {
 }
 
 .title {
+  font-family: 'Hepta Slab', serif;
   color: #FFF;
 }
 

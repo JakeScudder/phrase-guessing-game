@@ -83,6 +83,9 @@ class Game {
                 scoreboard[i].src = 'images/liveHeart.png'
             }
         }
+        //Remove previous games winning phrase
+        let h5 = document.querySelectorAll('h5');
+        h5.forEach(winPhrase => winPhrase.style.display = 'none')
     }
 
     /**
@@ -146,9 +149,9 @@ class Game {
     gameOver(truthy) {
         let overlay = document.getElementById('overlay');
         let h1 = document.getElementById('game-over-message');
-        h1.textContent = "Sorry, better luck next time!";
         overlay.style.display = 'block';
         if (truthy) {
+            h1.textContent = "Sorry, better luck next time!";
             h1.style.display = 'block';
             overlay.className = 'lose';
         } else {
@@ -156,7 +159,12 @@ class Game {
             h1.style.display = 'block';
             overlay.className = 'win';
         }
-
+        //Include phrase in winning screen
+        let h2 = document.getElementById('game-title');
+        let phraseAnswer = this.activePhrase.phrase
+        let h5 = document.createElement('p');
+        h5.innerHTML = `<h5 id='win-phrase'>"${phraseAnswer}"</h5>`
+        h2.appendChild(h5);
         //Remove li elements from phrase when game is over
         let li = document.querySelectorAll('#phrase li')
         li.forEach(li => li.remove());
