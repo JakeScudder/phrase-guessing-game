@@ -14,6 +14,7 @@ class Phrase {
         let html = "";
 
         //Split the phrase into an array of characters then check each letter and assign it a class
+        //If the letter is a space, it is assigned a different class
         let arr = this.phrase.split("")
         arr.forEach(character => {
             let test = /[a-z]/.test(character);
@@ -43,6 +44,8 @@ class Phrase {
     /**
      * Displays passed letter on screen after a match is found
      * @param (string) letter - Letter to display
+     * Compares the list item[i] class Name to see if the letter passed in as an argument
+     * matches that class
      */
     showMatchedLetter(letter) {
         let li = document.querySelectorAll('li')

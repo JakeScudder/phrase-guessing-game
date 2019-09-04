@@ -3,6 +3,7 @@
  * app.js */
 let game = null;
 
+// starts new game when the start game button is pressed
 document.getElementById('btn__reset').addEventListener('click', function(){
   game = new Game();
   game.startGame();
@@ -17,6 +18,10 @@ for (let i = 0; i < keyboard.length; i++) {
     });
 }
 
+//Keyboard functionality:
+//Loops through all keyboard buttons, if the event from the keyboard press
+//matches the textContent of the keyboard element button,
+//then that game.handleInteraction method is called on that element.
 for (let i = 0; i < keyboard.length; i++) {
     document.addEventListener('keydown', function(event) {
         if (keyboard[i].textContent === event.key) {

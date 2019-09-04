@@ -64,7 +64,7 @@ class Game {
       addPhraseToDisplay is called on the activePhrase object
     */
     startGame() {
-        //Reset keyboard to play the next game
+        //Reset keyboard class names to play the next game
         let keys = document.querySelectorAll('.keyrow button')
         for (let i = 0; i < keys.length; i++) {
             keys[i].className = 'key';
@@ -76,10 +76,7 @@ class Game {
         this.activePhrase = new Phrase(randomPhrase.phrase);
         this.activePhrase.addPhraseToDisplay();
 
-
-
-
-        //Add Hearts
+        //If hearts were changed to lost hearts, live hearts are repopulated
         let scoreboard = document.querySelectorAll('img');
         for (let i = 0; i < scoreboard.length; i++) {
             if (scoreboard[i].src.includes('images/lostHeart.png')) {
@@ -89,9 +86,15 @@ class Game {
     }
 
     /**
-     * Checks for winning move
-     * @return {boolean} True if game has been won, false if game wasn't
-    won */
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't won
+    * Creates an empty array
+    * If current list item has a className of show letter ${letter}
+    * Then it is true and pushed into the truthyArray
+    * If it is a space, it is also true and pushed into the arraay
+    * If the truthyArray include a false, it is false
+    * If it is entirely true, the function resolves to true
+    */
     checkForWin() {
         let li = document.querySelectorAll('#phrase li');
         let truthyArray = [];
@@ -112,9 +115,11 @@ class Game {
     }
 
     /**
-     * Increases the value of the missed property
-     * Removes a life from the scoreboard
-     * Checks if player has remaining lives and ends game if player is out
+     *
+     * A for loop runs until it encounters a live heart, then it changes that image to a lost heart
+     * The missed counter is increased and the loop breaks
+     * Checks if the missed counter is = to 5
+     * gameOver function initiated if counter = 5
      */
     removeLife() {
         let scoreboard = document.querySelectorAll('img');
@@ -151,7 +156,8 @@ class Game {
             h1.style.display = 'block';
             overlay.className = 'win';
         }
-        //Remove li elements from phrase
+
+        //Remove li elements from phrase when game is over
         let li = document.querySelectorAll('#phrase li')
         li.forEach(li => li.remove());
 
@@ -160,7 +166,10 @@ class Game {
 
     /**
      * Handles onscreen keyboard button clicks
-     * @param (HTMLButtonElement) button - The clicked button element
+     * Also handles actual keyboard presses
+     * @param (HTMLButtonElement) button - The clicked or keydown button element
+     * If the previous letter was correct, checkForWin() then call gameOver() if checkForWin
+     * evaluates to true
      */
     handleInteraction(button) {
         button.disabled = true;
