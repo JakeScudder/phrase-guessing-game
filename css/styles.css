@@ -41,6 +41,7 @@ h2 {
   text-transform: uppercase;
   font-size: var(--font-size-large);
   margin-top: 100px;
+  -webkit-
 }
 
 h5 {
@@ -70,6 +71,7 @@ button {
 #btn__reset {
 	width: 200px;
 	margin: 0 auto;
+    -webkit-animation-delay: 1s;
 }
 
 .main-container {

@@ -165,6 +165,7 @@ class Game {
         let h5 = document.createElement('p');
         h5.innerHTML = `<h5 id='win-phrase'>"${phraseAnswer}"</h5>`
         h2.appendChild(h5);
+
         //Remove li elements from phrase when game is over
         let li = document.querySelectorAll('#phrase li')
         li.forEach(li => li.remove());
