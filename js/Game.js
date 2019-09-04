@@ -71,7 +71,7 @@ class Game {
             keys[i].disabled = false;
         }
         let overlay = document.getElementById('overlay');
-        overlay.style.display = 'none';
+        overlay.className = "animated fadeOutRight";
         let randomPhrase = this.getRandomPhrase()
         this.activePhrase = new Phrase(randomPhrase.phrase);
         this.activePhrase.addPhraseToDisplay();
@@ -149,26 +149,33 @@ class Game {
     gameOver(truthy) {
         let overlay = document.getElementById('overlay');
         let h1 = document.getElementById('game-over-message');
-        overlay.style.display = 'block';
         if (truthy) {
             h1.textContent = "Sorry, better luck next time!";
             h1.style.display = 'block';
-            overlay.className = 'lose';
+            overlay.className = 'lose animated fadeInUp';
         } else {
             h1.textContent = "Congratulations, you win!";
             h1.style.display = 'block';
-            overlay.className = 'win';
+            overlay.className = 'win animated fadeInUp';
         }
         //Include phrase in winning screen
-        let h2 = document.getElementById('game-title');
-        let phraseAnswer = this.activePhrase.phrase
-        let h5 = document.createElement('p');
-        h5.innerHTML = `<h5 id='win-phrase'>"${phraseAnswer}"</h5>`
-        h2.appendChild(h5);
+        let h5Test = document.getElementById('win-phrase');
+        if (h5Test === null) {
+            let h2 = document.getElementById('game-title');
+            let phraseAnswer = this.activePhrase.phrase
+            let h5 = document.createElement('p');
+            h5.innerHTML = `<h5 id='win-phrase'>"${phraseAnswer}"</h5>`
+            h2.appendChild(h5);
+        }
 
         //Remove li elements from phrase when game is over
         let li = document.querySelectorAll('#phrase li')
         li.forEach(li => li.remove());
+
+        //Disable keyboard event listener until game is started again
+        if (h1.style.display === 'block') {
+            document.removeEventListener('keydown', keyResponse);
+        }
 
 
     }
