@@ -16,9 +16,34 @@ class Game {
         let phrases = [
         {phrase:"Home is where the heart is"},
         {phrase:"Catch a tiger by the toe"},
-        {phrase:"Run Forrest run"},
+        {phrase:"A diamond in the rough"},
         {phrase:"With great power comes great responsibility"},
-        {phrase:"To infinity and beyond"}
+        {phrase:"A drop in the ocean"},
+        {phrase:"A fool and his money are soon parted"},
+        {phrase:"A fool's paradise"},
+        {phrase:"A journey of a thousand miles begins with a single step"},
+        {phrase:"A penny for your thoughts"},
+        {phrase:"Chick flick"},
+        {phrase:"Heard it through the grapevine"},
+        {phrase:"Hell or high water"},
+        {phrase:"Hold your horses"},
+        {phrase:"Hush puppies"},
+        {phrase:"How now brown cow"},
+        {phrase:"Shiver me timbers"},
+        {phrase:"The shot heard round the world"},
+        {phrase:"Speak of the Devil"},
+        {phrase:"Spill the beans"},
+        {phrase:"Give it to me straight"},
+        {phrase:"Dumb it down a shade"},
+        {phrase:"Such is life"},
+        {phrase:"thats all she wrote"},
+        {phrase:"the bees knees"},
+        {phrase:"the belle of the ball"},
+        {phrase:"The jig is up"},
+        {phrase:"the pen is mightier than the sword"},
+        {phrase:"the road less travelled"},
+        {phrase:"the skys the limit"},
+        {phrase:"things that go bump in the night"},
         ];
         return phrases;
     };
@@ -28,7 +53,7 @@ class Game {
      * @return {Object} Phrase object chosen to be used
      */
     getRandomPhrase() {
-        let randomNum = Math.floor(Math.random() * 5);
+        let randomNum = Math.floor(Math.random() * 30);
         return this.phrases[randomNum];
     }
 
@@ -39,11 +64,28 @@ class Game {
       addPhraseToDisplay is called on the activePhrase object
     */
     startGame() {
+        //Reset keyboard to play the next game
+        let keys = document.querySelectorAll('.keyrow button')
+        for (let i = 0; i < keys.length; i++) {
+            keys[i].className = 'key';
+            keys[i].disabled = false;
+        }
         let overlay = document.getElementById('overlay');
         overlay.style.display = 'none';
         let randomPhrase = this.getRandomPhrase()
         this.activePhrase = new Phrase(randomPhrase.phrase);
         this.activePhrase.addPhraseToDisplay();
+
+
+
+
+        //Add Hearts
+        let scoreboard = document.querySelectorAll('img');
+        for (let i = 0; i < scoreboard.length; i++) {
+            if (scoreboard[i].src.includes('images/lostHeart.png')) {
+                scoreboard[i].src = 'images/liveHeart.png'
+            }
+        }
     }
 
     /**
@@ -109,6 +151,11 @@ class Game {
             h1.style.display = 'block';
             overlay.className = 'win';
         }
+        //Remove li elements from phrase
+        let li = document.querySelectorAll('#phrase li')
+        li.forEach(li => li.remove());
+
+
     }
 
     /**
@@ -117,16 +164,19 @@ class Game {
      */
     handleInteraction(button) {
         button.disabled = true;
-        if (!phrase.checkLetter(button.textContent)) {
+        if (!this.activePhrase.checkLetter(button.textContent)) {
             button.className = 'wrong';
             this.removeLife();
-        } else if (checkLetter(button.textContent)){
+        } else if (this.activePhrase.checkLetter(button.textContent)){
             button.className = 'chosen';
-            phrase.showMatchedLetter();
-        } else if (this.checkForWin()) {
-                this.gameOver();
-            };
+            this.activePhrase.showMatchedLetter(button.textContent);
+            if (this.checkForWin()) {
+                    this.gameOver(false);
+                }
         }
+
+        }
+
 
 
 
