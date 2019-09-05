@@ -158,15 +158,23 @@ class Game {
             h1.style.display = 'block';
             overlay.className = 'win animated fadeInUp';
         }
+        
         //Include phrase in winning screen
+        let gameTitleP = document.querySelector('#game-title p');
+        let h2 = document.getElementById('game-title');
         let h5Test = document.getElementById('win-phrase');
+        let phraseAnswer = this.activePhrase.phrase
         if (h5Test === null) {
-            let h2 = document.getElementById('game-title');
-            let phraseAnswer = this.activePhrase.phrase
             let h5 = document.createElement('p');
             h5.innerHTML = `<h5 id='win-phrase'>"${phraseAnswer}"</h5>`
             h2.appendChild(h5);
+        } else {
+            h5Test.innerHTML = `${phraseAnswer}`;
+            h5Test.style.display = 'block';
         }
+
+
+
 
         //Remove li elements from phrase when game is over
         let li = document.querySelectorAll('#phrase li')
