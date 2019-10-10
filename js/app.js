@@ -18,6 +18,7 @@ document.getElementById('btn__reset').addEventListener('click', function(){
 for (let i = 0; i < keyboard.length; i++) {
     keyboard[i].addEventListener('click', function(event){
     game.handleInteraction(event.target);
+    console.log('click');
     });
 }
 
